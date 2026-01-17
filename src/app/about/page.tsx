@@ -1,7 +1,7 @@
-import React from 'react'
 
-export default function AboutPage() {
-  return (
-    <div>AboutPage</div>
-  )
+
+export default async function AboutPage() {
+    return (
+        <div>AboutPage</div>
+    )
 }
