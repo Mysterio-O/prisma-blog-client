@@ -1,9 +1,11 @@
+'use client'
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
+import { Separator } from "@radix-ui/react-separator";
+import { authClient } from "@/lib/auth-client";
 interface LoginProps {
   heading?: string;
   logo?: {
@@ -33,6 +35,23 @@ const Login = ({
   signupUrl = "https://shadcnblocks.com",
   className,
 }: LoginProps) => {
+
+  
+
+  const handleGoogleLogin = async () => {
+    try {
+      const data = await authClient.signIn.social({
+        provider: 'google',
+        callbackURL: 'http://localhost:3000'
+      });
+      console.log(data);
+    }
+    catch (e) {
+      console.error(e)
+    }
+  }
+
+
   return (
     <section className={cn("h-screen bg-muted", className)}>
       <div className="flex h-full items-center justify-center">
@@ -68,6 +87,10 @@ const Login = ({
             </div>
             <Button type="submit" className="w-full">
               {buttonText}
+            </Button>
+            <Separator className="bg-black" />
+            <Button onClick={()=>handleGoogleLogin()} className="w-full bg-linear-to-b from-purple-600 via-transparent to-violet-400">
+              Sign Up With Google
             </Button>
           </div>
           <div className="flex justify-center gap-1 text-sm text-muted-foreground">
