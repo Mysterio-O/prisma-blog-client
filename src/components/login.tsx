@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@radix-ui/react-separator";
 import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 interface LoginProps {
   heading?: string;
   logo?: {
@@ -45,6 +46,7 @@ const Login = ({
         callbackURL: 'http://localhost:3000'
       });
       console.log(data);
+      redirect("/")
     }
     catch (e) {
       console.error(e)
